@@ -1,0 +1,35 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+Our Products
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/all_items.css')}}">
+{% endblock %}
+
+{% block content %}
+<h1>Log in to Shop!</h1>
+<hr>
+
+{% if items %}
+    {% for item in items %}
+        <div class="card" style="width:18rem;">
+            <img src="{{ item.img }}" class="card-img-top">
+            {# style="height:100%; width:100%;" #}
+            <div class="card-body">
+            <h5 class="card-title">{{item.item_name.title()}}</h5>
+            {# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Price: {{item.price}}</li>
+                <li class="list-group-item">Description: {{item.desc}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+{% else %}
+<h1>Welcome to Sab's Shop!</h1>
+<p>Please register or log in to begin adding items to your cart.</p>
+<hr>
+{% endif %}
+{% endblock %}   

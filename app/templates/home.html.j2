@@ -1,0 +1,66 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+Our Products
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/all_items.css')}}">
+{% endblock %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+<h1>Welcome back, {{current_user.first_name}}</h1>
+<hr>
+{% else %}
+<h1>Welcome to Sab's Shop!</h1>
+<p>Please register or log in to begin adding items to your cart.</p>
+<hr>
+
+{% endif %}
+
+{% if items %}
+<div id="home_container">
+    {% for item in items %}
+        <div class="card" id="rug_cards">
+            <img src="{{item.img}}" class="card-img-top">
+            <div class="card-body" id="card_body">
+            <h5 class="card-title">{{item.item_name.title()}}
+            {% if current_user.is_authenticated %}
+                {% if item not in current_user.cart %}
+                    <a href="{{url_for('auth.add_item', item_name=item.item_name)}}" id="add_item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </a>
+                {% else %}
+                    <a href="{{url_for('auth.add_item', item_name=item.item_name)}}" id="add_item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </a>
+                    <a href="{{url_for('auth.remove_item', item_name=item.item_name)}}" id="remove_item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </a>
+                {% endif %}
+            {% endif %}
+            </h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" id="card_price">Price: ${{item.price}}</li>
+                <li class="list-group-item" id="card_description">Description: {{item.desc}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}   

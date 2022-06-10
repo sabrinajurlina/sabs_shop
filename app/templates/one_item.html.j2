@@ -1,0 +1,54 @@
+{% extends 'base.html.j2' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/one_item.css')}}">
+{% endblock %}
+
+{% block title %}
+Find Products
+{% endblock %}
+
+{% block content %}
+<h1>Search</h1>
+<form action="{{url_for('auth.shop')}}" method="POST">
+    {{form.hidden_tag()}}
+    <div>
+    {{form.item.label(class="form-label")}}
+    {{form.item(class="form-control")}}
+    {% for error in form.item.errors %}
+      <small style="color:red;">{{error}}</small>
+    {% endfor %}
+    </div>
+
+    <div>
+    {{form.submit(class="btn btn-light form-control align-content-center")}}
+    </div>  
+</form>
+
+{% if item %}
+  {% if item in current_user.cart %}
+    <p>We're sorry. This item is out of stock. Please search another item!</p>
+  {% else %}
+    <div class="card" id="one_card">
+      <img src="{{item.img}}" class="card-img-top">
+      <div class="card-body" id="card_body">
+      <h5 class="card-title">{{item.item_name.title()}}
+          <a href="{{url_for('auth.add_item', item_name=item.item_name)}}" id="add_item">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+          </a>
+      </h5>
+      </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" id="card_price">Price: ${{item.price}}</li>
+        <li class="list-group-item" id="card_description">Description: {{item.desc}}</li>
+    </ul>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}

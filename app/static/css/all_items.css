@@ -1,0 +1,79 @@
+/* RUGS */
+#rug_cards{
+    color:rgb(255, 255, 255);
+    width: 285px;
+}
+
+#rug_cards img{
+    width: 285px;
+    height: 380px;
+    align-self: center;
+}
+
+#rug_cards.card-body{
+    height:50px;
+}
+
+#home_container{
+    display: flex;
+    flex-direction: row;
+    margin-right:0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+#rug_cards h5{
+    height: 50px;
+    justify-self: center;
+    margin: auto;
+    padding: .6em;
+    font-weight: lighter;
+}
+
+#home_container.card-body{
+    height: 50px;
+    align-items: flex-start;
+}
+
+.card-body{
+    width: 285px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+#card_body.card-body{
+    height: 50px;
+    justify-items: center;
+    align-content: center;
+    background-color:rgb(66, 42, 55);
+}
+
+#rug_cards.card{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#rug_cards ul{
+    width: 280px;
+    height: 100px;
+    font-size: smaller;
+}
+
+#card_description{
+    height: 60px;
+    font-size: .80vw;
+    padding: .6em;
+    align-self: center;
+    justify-content: center;
+}
+
+#card_price{
+    padding: .6em;
+}
+
+#rug_cards svg{
+    color: white;
+}

@@ -1,0 +1,30 @@
+#one_card{
+    width: 285px;
+    color: white;
+}
+
+#one_card h5{
+    height: 50px;
+    justify-self: center;
+    margin: auto;
+    padding: .6em;
+    font-weight: lighter;
+}
+
+.card-body{
+    width: 285px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    background-color:rgb(66, 42, 55);
+}
+
+
+#one_card svg{
+    color: white;
+}
+
+#one_card img{
+    height: 385px;
+}
